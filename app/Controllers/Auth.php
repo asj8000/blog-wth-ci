@@ -14,7 +14,11 @@ class Auth extends BaseController
             $username = $this->request->getPost('username');
             $password = $this->request->getPost('password');
             
+            log_message('debug', 'Login attempt - Username: ' . $username);
+            
             $user = $userModel->verifyPassword($username, $password);
+            
+            log_message('debug', 'Verification result: ' . ($user ? 'success' : 'failed'));
             
             if ($user) {
                 $session = session();
@@ -27,7 +31,7 @@ class Auth extends BaseController
                 return redirect()->to('/posts');
             }
             
-            return redirect()->back()->with('error', '로그인 실패');
+            return redirect()->back()->with('error', '아이디 또는 비밀번호가 올바르지 않습니다.');
         }
         
         return view('auth/login');

@@ -26,9 +26,9 @@ class Database extends Config
      */
     public array $default = [
         'DSN'      => '',
-        'hostname' => 'localhost',
-        'username' => 'root',
-        'password' => '',
+        'hostname' => '127.0.0.1',
+        'username' => 'ci4user',
+        'password' => 'ci4pass',
         'database' => 'ci4_blog',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
