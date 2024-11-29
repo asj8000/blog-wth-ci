@@ -28,10 +28,12 @@ class Auth extends BaseController
                     'isLoggedIn' => true,
                 ]);
                 
-                return redirect()->to('/posts');
+                return redirect()->to('/posts')->with('message', '로그인 성공!');
             }
             
-            return redirect()->back()->with('error', '아이디 또는 비밀번호가 올바르지 않습니다.');
+            return redirect()->back()
+                ->with('error', '아이디 또는 비밀번호가 올바르지 않습니다.')
+                ->withInput();
         }
         
         return view('auth/login');
@@ -40,6 +42,6 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('/login');
+        return redirect()->to('/login')->with('message', '로그아웃 되었습니다.');
     }
 } 
